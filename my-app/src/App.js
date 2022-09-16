@@ -21,7 +21,7 @@ function App() {
           windowWidth > 1024 ? 
           <ul>
             <li><Link className="nav-link" to="/">Home</Link></li>
-            <li><Link className="nav-link" to="/about">test</Link></li>
+            <li><Link className="nav-link" to="/about">About</Link></li>
             <li><Link className="nav-link" to="/exercises">Exercises</Link></li>
             <li><Link className="nav-link" to="/foodsupplement">Food-Supplement</Link></li>
             <li><Link className="nav-link contact-margin" to="/contact">Contact</Link></li>
