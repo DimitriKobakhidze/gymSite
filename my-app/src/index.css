@@ -51,6 +51,7 @@
   left: 50%;
   transform: translate(-50%);
 }
+
 .button-div button{
   border-radius: 50%;
   width: 15px;
@@ -58,6 +59,7 @@
   margin-right: 10px;
   border: none;
   cursor: pointer;
+  z-index: 10;
 }
 
 .slider-text-div{
@@ -71,7 +73,7 @@
   display: flex;
   align-items: center;
   padding: 15px;
-
+  z-index: 10;
 }
 .slider-text{
   color: #dc3545;
@@ -80,6 +82,11 @@
     2px 2px 0 #1c1c1c,
   2px -2px 0 #1c1c1c,
   -2px -2px 0 #1c1c1c; 
+}
+.slider-pic{
+  z-index: 1;
+  width: 100%;
+  height: calc(100vh - 82px);
 }
 
 

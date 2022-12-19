@@ -6,15 +6,13 @@ import Background4 from "../Images/Slider/3.png"
 import Background5 from "../Images/Slider/5.png"
 
 
+const urlList = [Background1,Background2,Background3,Background4,Background5]
+
 export default function Home(){
-    const urlList = [Background1,Background2,Background3,Background4,Background5]
     const [sliderIndex,setSliderIndex] = React.useState(0)
 
     //for slider images
-    const style ={
-        backgroundImage: `url(${urlList[sliderIndex]})`,
-        backgroundPosition: sliderIndex > 2 ? "center" : ""
-    }
+  
     const sliderTextArray = ["Most impactful exercises","Right form","Correct diet","Useful supplements","Willpower"]
 
 
@@ -23,9 +21,6 @@ export default function Home(){
 
     React.useEffect(() =>{
         const autoInterval = setInterval(() =>{
-            // console.count("interval")
-            // console.log(`slider inside - ${sliderIndex}`)
-            // console.log("effect",sliderIndex)
             if(sliderIndex == 4){
                 setSliderIndex(0)
             }else{
@@ -33,18 +28,17 @@ export default function Home(){
             }
         },2500)
         return () =>{
-            // console.log("cleanup")
             clearInterval(autoInterval)
         }
     },[sliderIndex])
 
     function manualChange(event){
-        // console.log("MANUAL")
         setSliderIndex(parseInt(event.target.id))
     }
 
     return(
-        <div className="home-page" style={style}>
+        <div className="home-page">
+            <img className="slider-pic" src={urlList[sliderIndex]} loading="lazy" />
             <div className="slider-text-div">
                 <h1 className="slider-text">{sliderTextArray[sliderIndex]}</h1>
             </div>
