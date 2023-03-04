@@ -9,7 +9,6 @@ export default function Exercises(){
         )
     })
 
-    console.log(componentsArray)
 
     return(
         <div className="exercises-page">

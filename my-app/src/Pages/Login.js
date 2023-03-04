@@ -1,29 +1,20 @@
-import React from "react"
+import { useRef, useState } from "react"
 import successfulLogo from "../Images/check.png"
 
-export default function Login(){
-    const [loginData,setLoginData] = React.useState({
-        mail:"",
-        password:""
-    })
-    const [loginSuccessful,setLoginSuccessful] = React.useState(false)
+const Login = () => {
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const [loginSuccessful,setLoginSuccessful] = useState(false)
 
-    function handleChange(event){
-        setLoginData(prev =>(
-            {
-                ...prev,
-                [event.target.name]: event.target.value
-            }
-        ))
-    }
-
-    function loginFunction(){
+    const loginFunction = (e) => {
+        e.preventDefault()
         const userData = JSON.parse(localStorage.getItem("user"))
-        if(userData.mail == loginData.mail && userData.password == loginData.password){
-            // window.alert("Login succesful")
+        const userPassword = passwordRef.current.value
+        const userEmail = emailRef.current.value
+        if(userData.mail === userEmail && userData.password === userPassword){
             setLoginSuccessful(true)
         }else{
-            window.alert("Mail or password is incorrect")
+            alert("Mail or password is incorrect")
         }
     }
 
@@ -31,21 +22,21 @@ export default function Login(){
         <div className="login-page">
             {
                 !loginSuccessful ? 
-                <div className="form-div">
+                <form className="form-div" onSubmit={loginFunction}>
                     <div className="input-div">
                         <h3>Mail or username</h3>
-                        <input type="mail" name="mail" onChange={(event) => handleChange(event)} ></input>
+                        <input type="mail" name="mail" ref={emailRef} ></input>
                     </div>
                     <div className="input-div">
                         <h3>Password</h3>
-                        <input type="password" name="password" onChange={(event) => handleChange(event)}></input>
+                        <input type="password" name="password" ref={passwordRef}></input>
                     </div>
-                    <input className="login-button" type="submit" value="Login" onClick={loginFunction}></input>
-                </div>
+                    <input className="login-button" type="submit" value="Login"></input>
+                </form>
                 : 
                 <div className="login-success">
                     <div className="login-upper">
-                        <img src={successfulLogo}></img>
+                        <img src={successfulLogo} alt="Failed to Load"></img>
                         <h1 style={{marginTop:"20px",textAlign:"center"}}>Login successful</h1>
                     </div>
                 </div>
@@ -53,3 +44,5 @@ export default function Login(){
         </div>
     )
 }
+
+export default Login

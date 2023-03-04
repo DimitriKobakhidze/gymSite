@@ -1,9 +1,8 @@
 
 
-
-export default function About(){
+const About = (props) => {
     return(
-        <div className="about-page">
+        <div className="about-page" style={{backgroundImage: `url(${props.bg})`}}>
             <div className="about-text-div">
             <p>
                 Here you can get information on how to do the exercises correctly, which is critical to progress.
@@ -18,3 +17,5 @@ export default function About(){
         </div>
     )
 }
+
+export default About

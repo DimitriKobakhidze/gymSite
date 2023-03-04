@@ -1,85 +1,53 @@
-import React from "react"
+import { useState, useEffect, useRef } from "react"
+
+import passDifficultyChecker from "../Functions/password-diff"
 import successfulLogo from "../Images/check.png"
 
 export default function Register(){
+    const emailRef = useRef()
+    const accountNameRef = useRef()
+    const repeatPasswordRef = useRef()
+    const phoneRef = useRef()
+    const countryRef = useRef()
+    const cityRef = useRef()
+    const[password,setPassword] = useState("")
+    const[passwordDifficulty,setPasswordDifficulty] = useState()
+    const[registerSuccessful,setRegisterSuccessful] = useState(false)
+    
     const objectDate = new Date()
     const registerDate = `${objectDate.getDay()}-${objectDate.getMonth()}-${objectDate.getFullYear()}`
-    const[formData,setFormData] = React.useState(
-        {
-            mail:"",
-            accountName:"",
-            password:"",
-            repeatPassword:"",
-            phone:"",
-            country:"Georgia",
-            city:"",
-            registerDate:registerDate
-        }
-    )
-    const[passwordDifficulty,setPasswordDifficulty] = React.useState()
-    const[registerSuccessful,setRegisterSuccessful] = React.useState(false)
     
-    function handleChange(event){
-        setFormData(prev =>(
-            {
-                ...prev,
-                [event.target.name]: event.target.value
-            }
-        ))
+
+    const handleChange = (e) => {
+        setPassword(e.target.value)
     }
 
-    function handleForm(){
-        if(formData.password == formData.repeatPassword){
-            console.log(formData)
+    const handleForm = (e) => {
+        e.preventDefault()
+        const repeatPassword = repeatPasswordRef.current.value
+        if(password === repeatPassword){
+            const formData = {
+                accountName:accountNameRef.current.value,
+                mail:emailRef.current.value,
+                password,
+                phone:phoneRef.current.value,
+                city:cityRef.current.value,
+                country:countryRef.current.value,
+                registerDate,
+            }
             localStorage.setItem("user",JSON.stringify(formData))
             setRegisterSuccessful(true)
         }else{
-            window.alert("Passwords not matching")
+           alert("Passwords not matching")
         }
     }
-
-    React.useEffect(() =>{
-        let hasNumber = false
-        let hasSymbol = false
-        let hasUpper = false
-        let hasLower = false
-        let passLevel = 0
-
-        //if string has signs it returns array of matched signs else it returns null
-        if(formData.password.match(/[#,$,!,%,&,*,^]/g) !== null){
-            hasSymbol = true
-        }
-        for(let i =0;i < formData.password.length;i++){
-            if(!isNaN(formData.password[i])){
-                hasNumber = true
-            }else if(formData.password[i] === formData.password[i].toUpperCase()){
-                hasUpper = true
-            }else if(formData.password[i] === formData.password[i].toLowerCase()){
-                hasLower = true
-            }
-        }
-        if(hasNumber){
-            passLevel++
-        }
-        if(hasSymbol){
-            passLevel++
-        }
-        if(hasUpper){
-            passLevel++
-        }
-        if(hasLower){
-            passLevel++
-        }
-        if(passLevel < 2 && passLevel > 0){
-            setPasswordDifficulty({difficulty:"Weak password",color:"#981a2c"})
-        }else if(passLevel == 2){
-            setPasswordDifficulty({difficulty:"Normal password",color:"#ffcc99"})
-        }else if(passLevel == 3){
-            setPasswordDifficulty({difficulty:"Strong password",color:"#99ff66"})
-        }else if(passLevel == 4){
-            setPasswordDifficulty({difficulty:"Very strong password",color:"#3dcf4f"})
-        }
-    },[formData.password])
+    
+    useEffect(() =>{
+        if(password.length < 1) return
+        
+        const { difficulty, color} = passDifficultyChecker(password)
+        setPasswordDifficulty({difficulty,color})
+    },[password])
 
 
    
@@ -88,53 +56,53 @@ export default function Register(){
         <div className="register-page">
             {
                 !registerSuccessful ?
-                    <div className="form-div">
+                    <form className="form-div" onSubmit={handleForm}>
                         <div className="input-div">
                             <h3>Mail</h3>
-                            <input type="mail" name="mail" onChange={(event) => handleChange(event)}></input>
+                            <input type="mail" name="mail" ref={emailRef} ></input>
                         </div>
                         <div className="input-div">
                             <h3>Account name</h3>
                             {/* <input type="text" name="accountName" value={formData.accountName}></input> */}
-                            <input type="text" name="accountName" onChange={(event) => handleChange(event)}></input>
+                            <input type="text" name="accountName" ref={accountNameRef} ></input>
                         </div>
                         <div className="input-div">
                             <h3>Password</h3>
-                            <input type="password" name="password" onChange={(event) => handleChange(event)}></input>
+                            <input type="password" name="password" onChange={handleChange} ></input>
                             {passwordDifficulty && <h4 style={{color:passwordDifficulty.color}} className="pass-dif">{passwordDifficulty.difficulty}</h4>}
                         </div>
                         <div className="input-div">
                             <h3>Repeat password</h3>
-                            <input type="password" name="repeatPassword" onChange={(event) => handleChange(event)}></input>
+                            <input type="password" name="repeatPassword" ref={repeatPasswordRef} ></input>
                         </div>
                         <div className="input-div">
                             <h3>Phone</h3>
-                            <input type="tel" name="phone" onChange={(event) => handleChange(event)}></input>
+                            <input type="tel" name="phone" ref={phoneRef} ></input>
                         </div>
                         <div className="input-div">
                             <h3>Country</h3>
-                            <select onChange={(event) => handleChange(event)} name="country">
-                                <option selected value="georgia" >Georgia</option>
-                                <option value="germany" >Germany</option>
-                                <option value="belgium" >Belgium</option>
-                                <option value="france" >France</option>
-                                <option value="england" >England</option>
+                            <select  name="country" ref={countryRef} defaultValue="Georgia">
+                                <option value="Georgia" disabled >Georgia</option>
+                                <option value="Germany" >Germany</option>
+                                <option value="Belgium" >Belgium</option>
+                                <option value="France" >France</option>
+                                <option value="England" >England</option>
                             </select>
                         </div>
                         <div className="input-div">
                             <h3>City</h3>
-                            <input type="text" name="city" onChange={(event) => handleChange(event)}></input>
+                            <input type="text" name="city" ref={cityRef} ></input>
                         </div>
                         <div className="input-div">
                             <h3>Register date</h3>
                             <input type="text" className="register-date" placeholder={registerDate}></input>
                         </div>
-                        <input className="register-button" type="submit" value="Register" onClick={handleForm}></input>
-                    </div>
+                        <input className="register-button" type="submit" value="Register" />
+                    </form>
                 :
                 <div className="login-success">
                     <div className="login-upper">
-                        <img src={successfulLogo}></img>
+                        <img src={successfulLogo} alt="failed to load"></img>
                         <h1 style={{marginTop:"20px",textAlign:"center"}}>Register successful</h1>
                     </div>
                 </div>
