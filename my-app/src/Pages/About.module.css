@@ -1,0 +1,12 @@
+.bg, .spinner-wrapper{
+    position:fixed;
+    width: 100%;
+    height: calc( 100vh - 100px);
+    z-index: -1000;
+}
+.spinner-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3c3c3c;
+}
