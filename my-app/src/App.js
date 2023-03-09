@@ -1,32 +1,29 @@
-import React from "react";
-import {Route, Routes} from "react-router-dom"
-import Home  from "./Pages/Home";
-import About  from "./Pages/About";
-import Contact from "./Pages/Contact";
-import Exercises from "./Pages/Exercises";
-import FoodSupplement from "./Pages/FoodSupplement";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Layout from "./Components/Layout/Layout";
+import HomePage from "./Pages/HomePage";
+import AboutPage from "./Pages/AboutPage";
+import ContactPage from "./Pages/ContactPage";
+import ExercisePage from "./Pages/ExercisePage";
+import FoodPage from "./Pages/FoodPage";
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
 
-
-const preloadedImages = {
-  aboutBg: require("./Images/about.jpg")
-}
-
-function App() {
+const App = () => {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About bg={preloadedImages.aboutBg} />}></Route>
-        <Route path="/exercises" element={<Exercises />}></Route>
-        <Route path="/foodsupplement" element={<FoodSupplement />}></Route>
-        <Route path="/contact" element={<Contact bg={preloadedImages.aboutBg} />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-      </Routes>
-    </Layout>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/exercise" element={<ExercisePage />} />
+          <Route path="/food-supplements" element={<FoodPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 

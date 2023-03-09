@@ -1,0 +1,50 @@
+.part-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.part-container header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.part-container header h1 {
+    color: var(--mainRed);
+}
+.part-container header span {
+    color: white;
+    text-align: center;
+    max-width: 90%;
+    font-size: 18px;
+}
+.part-container section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.part-container section div {
+    position: relative;
+    cursor: pointer;
+}
+.part-container section img {
+    width: 300px;
+    height: 250px;
+    border: solid 2px white;
+}
+.part-container section h3 {
+    position: absolute;
+    bottom: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--mainRed);
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 22px;
+    background-color: rgba(0,0,0,0.60);
+    padding: 0 5px;
+}

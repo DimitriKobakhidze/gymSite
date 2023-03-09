@@ -1,13 +1,15 @@
-import Navbar from "./Navbar";
 
+import NavBar from "./NavBar"
 
-const Layout = (props) =>{
+const Layout = (props) => {
+    
     return(
-        <div className="app-div">
-            <Navbar />
+        <>
+            <NavBar />
             {props.children}
-        </div>
+        </>
     )
 }
+
 
 export default Layout

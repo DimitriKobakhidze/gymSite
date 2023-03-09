@@ -1,21 +1,27 @@
 import { Link } from "react-router-dom"
 
-import classes from "./Navbar.module.css"
+import classes from "./NavBar.module.css"
+import logo from "../../Images/logo.png"
 
-const Navbar = () =>{
-    return (
-            <nav className={classes["main-nav"]}>
+const NavBar = () => {
+    return(
+        <header className={classes["header"]} id="test">
+            <Link to="/"  className={classes["header-logo"]}>
+                <img src={logo} alt="failed to load" />
+            </Link>
+            <nav>
                 <ul>
-                    <li><Link className={classes["nav-link"]} to="/">Home</Link></li>
-                    <li><Link className={classes["nav-link"]} to="/about">About</Link></li>
-                    <li><Link className={classes["nav-link"]} to="/exercises">Exercises</Link></li>
-                    <li><Link className={classes["nav-link"]} to="/foodsupplement">Food-Supplement</Link></li>
-                    <li><Link className={`${classes["nav-link"]} ${classes["contact-margin"]}`} to="/contact">Contact</Link></li>
-                    <li><Link className={classes["nav-link"]} to="/register">Register</Link></li>
-                    <li><Link className={classes["nav-link"]} to="/login">Login</Link></li>
-                </ul> 
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="about">About</Link></li>
+                    <li><Link to="exercise">Exercises</Link></li>
+                    <li><Link to="food-supplements">Food-Supplements</Link></li>
+                    <li><Link to="contact">Contact</Link></li>
+                    <li className={classes["form-li"]}><Link to="login">Login</Link></li>
+                    <li><Link to="register">Register</Link></li>
+                </ul>
             </nav>
+        </header>
     )
 }
 
-export default Navbar
+export default NavBar

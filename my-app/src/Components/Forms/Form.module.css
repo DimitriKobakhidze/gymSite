@@ -1,0 +1,93 @@
+.form-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 500px;
+    height: 500px;
+}
+.logo{
+    font-size: 110px;
+    color: #484e56;
+}
+
+.form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    border-top: 5px solid #484e56;
+    padding-top: 30px;
+    gap:30px;
+}
+.form-wrapper form input {
+    height: 35px;
+    width: 350px;
+    border: none;
+    background-color: #f1f1f1;
+    outline: none;
+    padding-left: 15px;
+    font-size: 18px;
+    color: #626262;
+    font-weight: bold;
+}
+.form-wrapper form input::-webkit-input-placeholder{
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Tilt Warp', cursive;
+}
+.form-wrapper form button {
+    background-color: #484e56;
+    border: none;
+    width: 350px;
+    height: 40px;
+    text-transform: uppercase;
+    color: white;
+    font-family: 'Tilt Warp', cursive;
+    font-size: 20px;
+    cursor: pointer;
+}
+.form-wrapper span{
+    font-family: 'Tilt Warp', cursive;
+    color: #484e56;
+    text-decoration: underline;
+    padding-top: 2px;
+}
+.success-div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.success-logo{
+    font-size: 95px;
+    color: green;
+    animation: ease-in 2s registerAnime;
+}
+.success-div h1{
+    white-space: nowrap;
+    font-family: 'Tilt Warp', cursive;
+    color: green;
+    letter-spacing: 2px;
+    animation: ease-in 2s registerAnime;
+
+}
+
+@keyframes registerAnime {
+    0%{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

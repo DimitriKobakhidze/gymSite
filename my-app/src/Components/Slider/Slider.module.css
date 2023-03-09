@@ -1,0 +1,39 @@
+.slider-changer {
+    position: fixed;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    gap: 15px;
+}
+.slider-changer button {
+    background-color: var(--mainRed);
+    border-radius: 50%;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.quote {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%,-50%);
+}
+.quote a {
+    text-decoration: none;
+    color: white;
+}
+.quote a h1 {
+    font-size: 65px;
+    color: var(--mainRed);
+    font-family: 'Tilt Warp', cursive;
+    letter-spacing: 3px;
+    /* text-decoration: underline; */
+    border-bottom: var(--mainRed) solid 8px;
+    border-top: var(--mainRed) solid 8px;
+    padding: 0px 15px;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
