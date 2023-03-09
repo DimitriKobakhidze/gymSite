@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import classes from "./NavBar.module.css"
 import logo from "../../Images/logo.png"
 
-const NavBar = () => {
+const Navbar = () => {
     return(
         <header className={classes["header"]} id="test">
             <Link to="/"  className={classes["header-logo"]}>
@@ -24,4 +24,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar
+export default Navbar

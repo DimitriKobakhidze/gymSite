@@ -1,11 +1,11 @@
 
-import NavBar from "./NavBar"
+import Navbar from "./Navbar"
 
 const Layout = (props) => {
     
     return(
         <>
-            <NavBar />
+            <Navbar />
             {props.children}
         </>
     )
