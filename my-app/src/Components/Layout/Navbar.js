@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-import classes from "./NavBar.module.css"
+import classes from "./Navbar.module.css"
 import logo from "../../Images/logo.png"
 
 const Navbar = () => {
